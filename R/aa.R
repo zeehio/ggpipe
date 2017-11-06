@@ -72,20 +72,56 @@ for (.fun_name in .ggplot2funs) {
 #'
 #' With respect to [ggplot2::ggsave()], this function checks the types
 #' and swaps the filename and plot arguments if needed, so it is pipeable
+#' @param filename File name to create on disk
+#' @param plot Plot to save
 #' @inheritDotParams ggplot2::ggsave
-#'
+#' @return the ggplot object
 #' @seealso ggplot2::ggsave
 #'
 ggsave <- function(filename, plot, ...) {
   if (inherits(filename, "ggplot") || inherits(filename, "grob")) {
     gplt <- filename
     filename <- plot
-  } else {
-    gplt <- plot
+  } else if (is.character(filename)) {
+    if (missing(plot)) {
+      gplt <- ggplot2::last_plot()
+    } else {
+      gplt <- plot
+    }
   }
   ggplot2::ggsave(filename, plot = gplt, ...)
+  invisible(gplt)
 }
 
+#' Returns the data from the ggplot
+#'
+#' Returns the data frame from the \code{gplt} object
+#'
+#' @param gplt A ggplot object
+#' @param layer ggplot plots can include different data in other layers. This is
+#'              the index of the layer to return (by default the global data
+#'              is returned)
+#' @return a data frame
+#'
+#' @examples
+#'
+#' data(iris)
+#' ggplot(iris) %>%
+#'   geom_point(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) %>%
+#'   ggsave("demo.png") %>%
+#'   unggplot() %>%
+#'   head()
+unggplot <- function(gplt, layer = NULL) {
+  if (is.null(layer)) {
+    return(gplt$data)
+  } else {
+    if (inherits(gplt$layers[[layer]]$data, "waiver")) {
+      return(gplt$data)
+    } else {
+      return(gplt$layers[[layer]]$data)
+    }
+  }
+}
 
 #' @title ggplot2 functions modified to work with the pipe
 #' @name ggplot-pipeified

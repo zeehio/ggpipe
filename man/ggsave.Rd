@@ -7,6 +7,10 @@
 ggsave(filename, plot, ...)
 }
 \arguments{
+\item{filename}{File name to create on disk}
+
+\item{plot}{Plot to save}
+
 \item{...}{Arguments passed on to \code{ggplot2::ggsave}
 \describe{
   \item{filename}{File name to create on disk.}
@@ -27,6 +31,9 @@ If not supplied, uses the size of current graphics device.}
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
 }}
+}
+\value{
+the ggplot object
 }
 \description{
 With respect to [ggplot2::ggsave()], this function checks the types

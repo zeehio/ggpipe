@@ -148,8 +148,8 @@
 \alias{stat_bin}
 \alias{stat_bin2d}
 \alias{stat_bin_2d}
-\alias{stat_bin_hex}
 \alias{stat_binhex}
+\alias{stat_bin_hex}
 \alias{stat_boxplot}
 \alias{stat_contour}
 \alias{stat_count}
@@ -343,8 +343,8 @@ object. Follow the links below to see their documentation.
   \item{stat_bin}{\code{\link[ggplot2]{stat_bin}}}
   \item{stat_bin2d}{\code{\link[ggplot2]{stat_bin2d}}}
   \item{stat_bin_2d}{\code{\link[ggplot2]{stat_bin_2d}}}
-  \item{stat_bin_hex}{\code{\link[ggplot2]{stat_bin_hex}}}
   \item{stat_binhex}{\code{\link[ggplot2]{stat_binhex}}}
+  \item{stat_bin_hex}{\code{\link[ggplot2]{stat_bin_hex}}}
   \item{stat_boxplot}{\code{\link[ggplot2]{stat_boxplot}}}
   \item{stat_contour}{\code{\link[ggplot2]{stat_contour}}}
   \item{stat_count}{\code{\link[ggplot2]{stat_count}}}

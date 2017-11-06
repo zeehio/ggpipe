@@ -1,7 +1,7 @@
 Package: ggpipe
 Title: ggplot with the pipe
 Version: 0.0.0.9000
-Authors@R: person("Sergio", "Oller", email = "sergioller@gmail.com", role = c("aut", "cre"))
+Authors@R: person("Sergio", c("Oller", "Moreno"), email = "sergioller@gmail.com", role = c("aut", "cre"))
 Description: Wraps ggplot2 functions so they work with the pipe.
 Depends: ggplot2
 Imports: magrittr, scales

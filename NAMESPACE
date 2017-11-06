@@ -1,0 +1,5 @@
+exportPattern("^[^\\.]")
+import(ggplot2)
+import(scales)
+importFrom(magrittr,"%>%")
+export("%>%")

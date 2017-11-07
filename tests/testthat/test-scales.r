@@ -68,14 +68,12 @@ test_that("position scales updated by all position aesthetics", {
     aes(xintercept = x, yintercept = y)
   )
 
-  base <- ggplot(df, aes(x = 1, y = 1)) + geom_point()
-  plots <- lapply(aesthetics, function(x) base %+% x)
-  ranges <- lapply(plots, pranges)
+  base1 <- ggplot2::ggplot(df, ggplot2::aes(x = 1, y = 1)) + ggplot2::geom_point()
+  base2 <- ggplot(df, ggpipe::aes(x = 1, y = 1)) %>% ggpipe::geom_point()
+  p1s <- lapply(aesthetics, function(x) base1 %+% x)
+  p2s <- lapply(aesthetics, function(x) base2 %+% x)
+  expect_equal(p1s, p2s)
 
-  lapply(ranges, function(range) {
-    expect_equal(range$x[[1]], c(1, 3))
-    expect_equal(range$y[[1]], c(1, 3))
-  })
 
 })
 

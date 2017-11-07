@@ -154,3 +154,10 @@ unggplot <- function(gplt, layer = NULL) {
 #' @aliases reexports %>%
 #' @keywords internal
 magrittr::`%>%`
+
+#' @docType import
+#' @name reexports
+#' @aliases reexports %>%
+#' @keywords internal
+ggplot2::ggplot
+

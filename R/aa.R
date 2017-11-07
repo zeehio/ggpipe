@@ -49,7 +49,7 @@
                  grep("^scale_[^.]*$", .ggplot2funs),
                  grep("^stat_.*", .ggplot2funs),
                  grep("^theme.*", .ggplot2funs))],
-  "ggtitle", "annotate", "xlab", "ylab", "labs"))
+  "ggtitle", "annotate", "xlab", "ylab", "labs")) # roxygenize when this changes
 .funs_to_pipe <- .funs_to_pipe[vapply(X = .funs_to_pipe,
                                       function(x) {
                                         fun <- get(x, envir = .ggplot2ns)

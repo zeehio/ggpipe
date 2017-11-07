@@ -12,6 +12,6 @@ Use ggplot functions with the pipe instead of the "+" operator
 ggplot(mtcars) \%>\% geom_point(aes(mpg, cyl))
 }
 \author{
-\strong{Maintainer}: Sergio Oller \email{sergioller@gmail.com}
+\strong{Maintainer}: Sergio Oller Moreno \email{sergioller@gmail.com}
 
 }

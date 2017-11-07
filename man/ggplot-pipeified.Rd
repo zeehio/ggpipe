@@ -68,6 +68,7 @@
 \alias{geom_violin}
 \alias{geom_vline}
 \alias{ggtitle}
+\alias{labs}
 \alias{scale_alpha}
 \alias{scale_alpha_continuous}
 \alias{scale_alpha_discrete}
@@ -148,8 +149,8 @@
 \alias{stat_bin}
 \alias{stat_bin2d}
 \alias{stat_bin_2d}
-\alias{stat_binhex}
 \alias{stat_bin_hex}
+\alias{stat_binhex}
 \alias{stat_boxplot}
 \alias{stat_contour}
 \alias{stat_count}
@@ -186,6 +187,8 @@
 \alias{theme_set}
 \alias{theme_update}
 \alias{theme_void}
+\alias{xlab}
+\alias{ylab}
 \title{ggplot2 functions modified to work with the pipe}
 \format{An object of class \code{NULL} of length 0.}
 \usage{
@@ -263,6 +266,7 @@ object. Follow the links below to see their documentation.
   \item{geom_violin}{\code{\link[ggplot2]{geom_violin}}}
   \item{geom_vline}{\code{\link[ggplot2]{geom_vline}}}
   \item{ggtitle}{\code{\link[ggplot2]{ggtitle}}}
+  \item{labs}{\code{\link[ggplot2]{labs}}}
   \item{scale_alpha}{\code{\link[ggplot2]{scale_alpha}}}
   \item{scale_alpha_continuous}{\code{\link[ggplot2]{scale_alpha_continuous}}}
   \item{scale_alpha_discrete}{\code{\link[ggplot2]{scale_alpha_discrete}}}
@@ -343,8 +347,8 @@ object. Follow the links below to see their documentation.
   \item{stat_bin}{\code{\link[ggplot2]{stat_bin}}}
   \item{stat_bin2d}{\code{\link[ggplot2]{stat_bin2d}}}
   \item{stat_bin_2d}{\code{\link[ggplot2]{stat_bin_2d}}}
-  \item{stat_binhex}{\code{\link[ggplot2]{stat_binhex}}}
   \item{stat_bin_hex}{\code{\link[ggplot2]{stat_bin_hex}}}
+  \item{stat_binhex}{\code{\link[ggplot2]{stat_binhex}}}
   \item{stat_boxplot}{\code{\link[ggplot2]{stat_boxplot}}}
   \item{stat_contour}{\code{\link[ggplot2]{stat_contour}}}
   \item{stat_count}{\code{\link[ggplot2]{stat_count}}}
@@ -381,6 +385,8 @@ object. Follow the links below to see their documentation.
   \item{theme_set}{\code{\link[ggplot2]{theme_set}}}
   \item{theme_update}{\code{\link[ggplot2]{theme_update}}}
   \item{theme_void}{\code{\link[ggplot2]{theme_void}}}
+  \item{xlab}{\code{\link[ggplot2]{xlab}}}
+  \item{ylab}{\code{\link[ggplot2]{ylab}}}
 }
 }
 \keyword{internal}

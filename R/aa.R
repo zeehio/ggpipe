@@ -6,20 +6,36 @@
 #' ggplot(mtcars) %>% geom_point(aes(mpg, cyl))
 "_PACKAGE"
 
-.pipe_decorator <- function(fun) {
-  fun_args <- names(formals(fun))
-  output_formals <- as.pairlist(c(alist(gplt = ), formals(fun)))
-  argpass <- lapply(X = fun_args, as.name)
-  names(argpass) <- fun_args
-  output_body <- substitute({
-      if (missing(gplt) || !inherits(gplt, "ggplot")) {
-        call <- sys.call()
-        call[[1]] <- x
-        eval.parent(call)
+.pipe_decorator <- function(f) {
+  output_formals <- append(formals(f), alist(gplt = ), after = 0)
+  output_body <- quote({
+    needs_piping <- tryCatch({
+      # Detect if the gplt argument or the first argument are of ggplot type:
+      # If it is true, get the ggplot object and remove it from the arguments
+      # in the call:
+      call <- sys.call()
+      if ("gplt" %in% names(call)) {
+        gplt <- eval.parent(call[["gplt"]])
+        to_remove <- "gplt"
       } else {
-        gplt + do.call(x, y)
+        gplt <- eval.parent(call[[2]])
+        to_remove <- 2
       }
-    }, list(x = fun, y = argpass))
+      stopifnot(inherits(gplt, "ggplot"))
+      call[[to_remove]] <- NULL
+      TRUE
+    }, error = function(e) {
+      FALSE
+    })
+    # Replace the called function by the ggplot one
+    call[[1]] <- f
+    # Evaluate
+    if (needs_piping) {
+      gplt + eval.parent(call)
+    } else {
+      eval.parent(call)
+    }
+    })
   as.function(c(output_formals, output_body))
 }
 

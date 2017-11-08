@@ -1,0 +1,80 @@
+---
+title: "ggpipe overhead"
+author: "Sergio Oller"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ggpipe-overhead}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This document compares the performance of two simple plots, built with `ggplot2`
+with respect to `ggpipe`, to show the performance penalty of the latter.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(ggpipe)
+```
+
+
+We define two tasks:
+
+- Task 1 defines a plot and saves it to a variable.
+- Task 2 defines the plot and builds it.
+
+Task 1 is where most of the overhead of `ggpipe` is supposed to be, as the plot
+building step is done by `ggplot2` in any case. However Task 2 reflects the
+most common use case (we usually want to print the plots we define).
+
+```{r task1}
+b1 <- microbenchmark::microbenchmark(
+  ggpipe = {p <- ggpipe::ggplot(iris) %>% ggpipe::geom_point(ggpipe::aes(x = Sepal.Length, y = Sepal.Width)) %>% ggpipe::scale_x_continuous("test")},
+  ggplot2 = {p <- ggplot2::ggplot(iris) + ggplot2::geom_point(ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) + ggplot2::scale_x_continuous("test")})
+b1$task <- "Define Plot"
+
+print(b1)
+```
+
+```{r task2}
+b2 <- microbenchmark::microbenchmark(
+  ggpipe = {ggplot2::ggplot_build(ggpipe::ggplot(iris) %>% ggpipe::geom_point(ggpipe::aes(x = Sepal.Length, y = Sepal.Width)) %>% ggpipe::scale_x_continuous("test"))},
+  ggplot2 = {ggplot2::ggplot_build(ggplot2::ggplot(iris) + ggplot2::geom_point(ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) + ggplot2::scale_x_continuous("test"))})
+b2$task <- "Define+Build Plot"
+
+print(b2)
+```
+
+
+
+```{r visualization}
+
+b <- dplyr::bind_rows(b1, b2)
+
+b %>%
+  group_by(expr, task) %>%
+  summarize(median_time = median(time)/1E6) %>%
+  ungroup %>%
+  ggplot %>%
+  geom_col(aes(x = expr, y = median_time, fill = expr)) %>%
+  xlab('Package') %>%
+  ylab("Median time (ms) (less is better)") %>%
+  facet_wrap(~task) %>%
+  guides(fill = FALSE)
+
+```
+
+```{r visualization2, warning=FALSE}
+ggplot(b) %>%
+  geom_jitter(aes(x = expr, y = time/1E6, color = expr)) %>%
+  xlab('Package') %>%
+  ylab("Time (ms) (less is better)") %>%
+  ylim(0, 20) %>%
+  facet_wrap(~task) %>%
+  guides(colour = FALSE)
+
+
+```
+

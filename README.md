@@ -5,7 +5,7 @@ ggpipe
 
 *ggplot with the pipe*
 
-This package wraps most ggplot functions so they work with the pipe `%>%`.
+This package wraps most `ggplot2` functions so they work with the pipe `%>%` with [minimal overhead](http://rpubs.com/zeehio/ggpipe-overhead) (if noticeable).
 
 [![Travis-CI Build Status](https://travis-ci.org/zeehio/ggpipe.svg?branch=master)](https://travis-ci.org/zeehio/ggpipe) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggpipe)](https://cran.r-project.org/package=ggpipe)
 

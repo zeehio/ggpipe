@@ -10,7 +10,11 @@ vignette: >
 ---
 
 This document compares the performance of two simple plots, built with `ggplot2`
-with respect to `ggpipe`, to show the performance penalty of the latter.
+with respect to `ggpipe`, to show the performance penalty of `ggpipe`.
+
+`ggpipe` has some performance penalty with respect to `ggplot2` because it uses
+`tryCatch` and evaluates twice one of the arguments, to determine if it is a
+`ggplot` object, and therefore to know if we are piping or adding.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -29,6 +33,9 @@ Task 1 is where most of the overhead of `ggpipe` is supposed to be, as the plot
 building step is done by `ggplot2` in any case. However Task 2 reflects the
 most common use case (we usually want to print the plots we define).
 
+
+Task 1 results: Define a plot
+
 ```{r task1}
 b1 <- microbenchmark::microbenchmark(
   ggpipe = {p <- ggpipe::ggplot(iris) %>% ggpipe::geom_point(ggpipe::aes(x = Sepal.Length, y = Sepal.Width)) %>% ggpipe::scale_x_continuous("test")},
@@ -37,6 +44,8 @@ b1$task <- "Define Plot"
 
 print(b1)
 ```
+
+Task 2 results: Define + Build plot
 
 ```{r task2}
 b2 <- microbenchmark::microbenchmark(
@@ -48,6 +57,7 @@ print(b2)
 ```
 
 
+This is the median time represented in a bar plot:
 
 ```{r visualization}
 
@@ -66,6 +76,8 @@ b %>%
 
 ```
 
+And the region where most of the data points are:
+
 ```{r visualization2, warning=FALSE}
 ggplot(b) %>%
   geom_jitter(aes(x = expr, y = time/1E6, color = expr)) %>%
@@ -74,7 +86,4 @@ ggplot(b) %>%
   ylim(0, 20) %>%
   facet_wrap(~task) %>%
   guides(colour = FALSE)
-
-
 ```
-

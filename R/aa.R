@@ -46,10 +46,12 @@
                  grep("^coord_.*", .ggplot2funs),
                  grep("^facet_.*", .ggplot2funs),
                  grep("^geom_.*", .ggplot2funs),
+                 grep("^guide_.*", .ggplot2funs),
                  grep("^scale_[^.]*$", .ggplot2funs),
                  grep("^stat_.*", .ggplot2funs),
                  grep("^theme.*", .ggplot2funs))],
-  "ggtitle", "annotate", "xlab", "ylab", "labs")) # roxygenize when this changes
+  "ggtitle", "annotate", "xlab", "ylab", "labs", "xlim", "ylim", "lims",
+  "guides")) # roxygenize when this changes
 .funs_to_pipe <- .funs_to_pipe[vapply(X = .funs_to_pipe,
                                       function(x) {
                                         fun <- get(x, envir = .ggplot2ns)

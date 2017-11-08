@@ -68,7 +68,12 @@
 \alias{geom_violin}
 \alias{geom_vline}
 \alias{ggtitle}
+\alias{guide_colorbar}
+\alias{guide_colourbar}
+\alias{guide_legend}
+\alias{guides}
 \alias{labs}
+\alias{lims}
 \alias{scale_alpha}
 \alias{scale_alpha_continuous}
 \alias{scale_alpha_discrete}
@@ -188,7 +193,9 @@
 \alias{theme_update}
 \alias{theme_void}
 \alias{xlab}
+\alias{xlim}
 \alias{ylab}
+\alias{ylim}
 \title{ggplot2 functions modified to work with the pipe}
 \format{An object of class \code{NULL} of length 0.}
 \usage{
@@ -266,7 +273,12 @@ object. Follow the links below to see their documentation.
   \item{geom_violin}{\code{\link[ggplot2]{geom_violin}}}
   \item{geom_vline}{\code{\link[ggplot2]{geom_vline}}}
   \item{ggtitle}{\code{\link[ggplot2]{ggtitle}}}
+  \item{guide_colorbar}{\code{\link[ggplot2]{guide_colorbar}}}
+  \item{guide_colourbar}{\code{\link[ggplot2]{guide_colourbar}}}
+  \item{guide_legend}{\code{\link[ggplot2]{guide_legend}}}
+  \item{guides}{\code{\link[ggplot2]{guides}}}
   \item{labs}{\code{\link[ggplot2]{labs}}}
+  \item{lims}{\code{\link[ggplot2]{lims}}}
   \item{scale_alpha}{\code{\link[ggplot2]{scale_alpha}}}
   \item{scale_alpha_continuous}{\code{\link[ggplot2]{scale_alpha_continuous}}}
   \item{scale_alpha_discrete}{\code{\link[ggplot2]{scale_alpha_discrete}}}
@@ -386,7 +398,9 @@ object. Follow the links below to see their documentation.
   \item{theme_update}{\code{\link[ggplot2]{theme_update}}}
   \item{theme_void}{\code{\link[ggplot2]{theme_void}}}
   \item{xlab}{\code{\link[ggplot2]{xlab}}}
+  \item{xlim}{\code{\link[ggplot2]{xlim}}}
   \item{ylab}{\code{\link[ggplot2]{ylab}}}
+  \item{ylim}{\code{\link[ggplot2]{ylim}}}
 }
 }
 \keyword{internal}
